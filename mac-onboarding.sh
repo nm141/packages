@@ -8,14 +8,14 @@
 #The purpose of this script is to run onboarding actions including:
 #The creation of a local admin
 #Allowing admin to use Apple Remote Desktop
-#Installing base application
+#Configuration of security settings include Office Macros
 
 #Variables
 TIMESTAMP=$(date +"%T %d-%m-%y")
 DIR=/tmp/ase
 LOGFILE=/tmp/ase/mac-onboarding.log
 UN=aseadmin
-PKGDIR=/tmp/ase/packages
+#PKGDIR=/tmp/ase/packages
 
 #Functions
 LOG (){
@@ -62,25 +62,6 @@ else
 fi
 
 #Configure Apple Remote desktop
-
-
-
-#Install applications
-if [ ! -d $PKGDIR ]
-then
-    mkdir $PKGDIR
-fi
-
-#Chrome
-LOG "Attempting to install chrome."
-if [ ! -f "/Applications/Google Chrome.pkg" ]
-then
-    curl https://storgrid-s3-dev.aseit.com.au/ase-macpackages/GoogleChromeEnterprise.pkg -o $PKGDIR/Chrome.pkg
-    installer -pkg $PKGDIR/Chrome.pkg -target /Applications
-    LOG "Google Chrome installed."
-else
-    LOG "Chrome already installed."
-fi
 
 #Network shares
 smb://asec3307_vf01.ampersandsyd.local/DEC
