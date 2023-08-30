@@ -102,3 +102,20 @@ else
 fi
 
 #Fonts
+#Only checks for one of the Montserrat fonts
+LOG "Attempting to install fonts."
+if [ ! -f "/Library/Fonts/Montserrat-Black.ttf" ]
+then
+    LOG "Donwloading fonts."
+    wget -r https://storgrid-s3-dev.aseit.com.au/ase-macpackages/DECFONTS -o $PKGDIR/DECFONTS
+    LOG "Fonts downloaded."
+    LOG " Attempting to copy fonts to /Library/Fonts."
+    cp -a $PKGDIR/DECFONTS/ /Library/Fonts/
+    LOG "Fonts copied."
+ else
+    LOG "Fonts already installed."
+fi
+
+#Printers
+LOG "Attempting to add printer."
+if [ ! -f "/System/Library/Printers/ ]
