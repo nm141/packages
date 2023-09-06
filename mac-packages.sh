@@ -140,8 +140,8 @@ then
     LOG "Fonts already installed."
 fi
 
-#Printers
-LOG "Attempting to add printer."
+#Printer driver.
+LOG "Attempting to add printer driver."
 if [ ! -e "/Library/Printers/Canon/CUPS_Printer/Utilities/Canon Office Printer Utility.app" ]
 then
     LOG "Downloading printer drive."
@@ -164,7 +164,37 @@ then
     LOG "Dismounting printer.dmg."
     hdiutil -detach /Volumes/printer.dmg
     LOG "Printer DMG dismounted."
-    
+fi
+LOG "Attempting to unzip ppd."
+unzip /Library/Printers/PPDs/Contents/Resources/CNPZUIRAC5840ZU.ppd.gz
+if [ ]
+
+
+
+#Printer installation.
+LOG "Attempting to install printer."
+
+lpadmin -p iR-ADV C5840 -E -v ipp://192.168.24.10/ipp/print -m driver drv:///sample.drv/laserjet.ppd -o department-id=1111
+
+
+
+
+#Office installation
+LOG "Attempting to install office."
+if [ ! -e "/Applications/Office.pkg" ]
+then
+    LOG "Downloading Office package."
+    curl https://storgrid-s3-dev.aseit.com.au/ase-macpackages/Microsoft_365_and_Office_16.76.23081101_BusinessPro_Installer.pkg -o $PKGDIR/Office.pkg
+    LOG "Office package downloaded."
+    LOG "Attempting to install office."
+    installer -pkg $PKGDIR/Office.pkg -target /Applications.
+        if [ ! -e "/Applications/Microsoft Excel.app" -a  ]
+        then    
+            LOG "Office installation failed."
+        else
+            LOG "Office installed succesfully."
+        fi
+fi
 
 
 
