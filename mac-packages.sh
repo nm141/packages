@@ -166,16 +166,20 @@ then
     LOG "Printer DMG dismounted."
 fi
 LOG "Attempting to unzip ppd."
-unzip /Library/Printers/PPDs/Contents/Resources/CNPZUIRAC5840ZU.ppd.gz
-if [ ]
-
-
+gzip -d /Library/Printers/PPDs/Contents/Resources/CNPZUIRAC5840ZU.ppd.gz
+if [ ! -e "/Library/Printers/PPDs/Contents/Resources/CNPZUIRAC5840ZU.ppd" ]
+then
+    LOG "Unzip unsuccessful."
+else
+    LOG "Unzip GREAT SUCCESS!"
+fi
+LOG "Attempting to take ownership of PPD."
+chown root:admin /Library/Printers/PPDs/Contents/Resources/CNPZUIRAC5840ZU.ppd
 
 #Printer installation.
 LOG "Attempting to install printer."
-
-lpadmin -p iR-ADV C5840 -E -v ipp://192.168.24.10/ipp/print -m driver drv:///sample.drv/laserjet.ppd -o department-id=1111
-
+lpadmin -p "iR-ADVC5840" -E -v ipp://192.168.24.10/ipp/print -P /Library/Printers/PPDs/Contents/Resources/CNPZUIRAC5840ZU.ppd -o department-id=1111
+if [ ! -e /etc/cups]
 
 
 
