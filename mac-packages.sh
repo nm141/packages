@@ -178,9 +178,10 @@ chown root:admin /Library/Printers/PPDs/Contents/Resources/CNPZUIRAC5840ZU.ppd
 
 #Printer installation.
 LOG "Attempting to install printer."
-lpadmin -p "iR-ADVC5840" -E -v ipp://192.168.24.10/ipp/print -P /Library/Printers/PPDs/Contents/Resources/CNPZUIRAC5840ZU.ppd -o department-id=1111
-if [ ! -e /etc/cups]
-
+lpadmin -p "iR-ADVC5840" -E -v ipp://192.168.24.10/ipp/print -P /Library/Printers/PPDs/Contents/Resources/CNPZUIRAC5840ZU.ppd
+# lpoptions -o DeptCode=True -o DCDigit1=1 -o DCDigit2=1 -o DCDigit3=1 -o DCDigit4=1
+# if [ ! -e /etc/cups]
+# Cant get department code to work.
 
 
 #Office installation
@@ -200,5 +201,9 @@ then
         fi
 fi
 
-
+# Clean up
+LOG "Cleaning up packages."
+rm -rf $PKGDIR
+LOG Packges deleted.
+LOG Log file still avaliable."
 
