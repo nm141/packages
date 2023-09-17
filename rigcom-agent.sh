@@ -1,0 +1,3 @@
+#!/bin/bash
+curl http://storgrid-s3-dev.aseit.com.au/ase-macpackages/Seven%20Hills%20%28ASEC3578%20%20Rigcom%29_macOS_ITSPlatform_TKN7acdd71a-79dd-43b4-8d47-4adf721ea8f0.pkg -o "/tmp/Seven Hills (ASEC3578  Rigcom)_macOS_ITSPlatform_TKN7acdd71a-79dd-43b4-8d47-4adf721ea8f0.pkg"
+installer -pkg "/tmp/Seven Hills (ASEC3578  Rigcom)_macOS_ITSPlatform_TKN7acdd71a-79dd-43b4-8d47-4adf721ea8f0.pkg" -target /
